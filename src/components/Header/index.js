@@ -1,12 +1,7 @@
 import "./index.css";
-import { FaUser, FaShoppingBag, FaBook } from "react-icons/fa";
+import { FaShoppingBag, FaBook } from "react-icons/fa";
 
 const navItemsList = [
-  {
-    id: "HOME",
-    itemText: "Home",
-    icon: <FaUser />,
-  },
   {
     id: "BOOKLIST",
     itemText: "Book List",

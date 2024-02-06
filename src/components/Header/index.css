@@ -2,11 +2,12 @@
   height: 70px;
   width: 100%;
   background-color: #ffe619;
-  padding: 10px;
 }
 
 .inner-container {
   max-width: 1280px;
+  padding: 10px;
+
   height: 100%;
   margin: auto;
   display: flex;
@@ -16,6 +17,7 @@
 .logo-container {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .logo {
@@ -43,6 +45,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.nav-btns:hover {
+  background-color: #ffffff;
 }
 
 .nav-btn-txt {

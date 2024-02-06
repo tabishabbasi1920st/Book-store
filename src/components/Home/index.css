@@ -1,0 +1,46 @@
+:root {
+  --header-height: 70px;
+}
+
+.banner-container {
+  min-height: calc(100vh - var(--header-height));
+  max-width: 1280px;
+  margin: auto;
+  padding: 15px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.explore-books-btn {
+  height: 40px;
+  padding: 10px;
+  width: 140px;
+  font-size: 15px;
+  background-color: #000;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.explore-books-btn:hover {
+  background-color: #302d2d;
+}
+
+@media screen and (max-width: 768px) {
+  .banner-text,
+  .book-store-heading {
+    text-align: center;
+  }
+
+  .explore-books-btn {
+    align-self: center;
+  }
+}
