@@ -130,7 +130,7 @@ Reference: https://api.itbook.store
 - Loader (react-loader-spinner)
 - Icons (react-icons)
 - Range Slider (rc-slider)
-- React Router (react-router-dom v5.2.0)
+- React Router (react-router-dom v6.22.0)
 
 ### Future Improvements
 
