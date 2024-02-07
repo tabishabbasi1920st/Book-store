@@ -1,49 +1,12 @@
 import "./index.css";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import Header from "../Header";
 import BookCard from "../BookCard";
+import { useState } from "react";
 
 const booksList = [
   {
-    title: "Designing Across Senses",
-    subtitle: "A Multimodal Approach to Product Design",
-    isbn13: "9781491954249",
-    price: "$27.59",
-    image: "https://itbook.store/img/books/9781491954249.png",
-    url: "https://itbook.store/books/9781491954249",
-  },
-  {
-    title: "Web Scraping with Python, 2nd Edition",
-    subtitle: "Collecting More Data from the Modern Web",
-    isbn13: "9781491985571",
-    price: "$33.99",
-    image: "https://itbook.store/img/books/9781491985571.png",
-    " url": "https://itbook.store/books/9781491985571",
-  },
-  {
-    title: "Programming iOS 11",
-    subtitle: "Dive Deep into Views, View Controllers, and Frameworks",
-    isbn13: "9781491999226",
-    price: "$59.17",
-    image: "https://itbook.store/img/books/9781491999226.png",
-    url: "https://itbook.store/books/9781491999226",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
     title: "MongoDB in Action, 2nd Edition",
     subtitle: "Covers MongoDB version 3.0",
     isbn13: "9781617291609",
@@ -68,52 +31,12 @@ const booksList = [
     url: "https://itbook.store/books/9781484211830",
   },
   {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "Designing Across Senses",
-    subtitle: "A Multimodal Approach to Product Design",
-    isbn13: "9781491954249",
-    price: "$27.59",
-    image: "https://itbook.store/img/books/9781491954249.png",
-    url: "https://itbook.store/books/9781491954249",
-  },
-  {
-    title: "Web Scraping with Python, 2nd Edition",
-    subtitle: "Collecting More Data from the Modern Web",
-    isbn13: "9781491985571",
-    price: "$33.99",
-    image: "https://itbook.store/img/books/9781491985571.png",
-    " url": "https://itbook.store/books/9781491985571",
-  },
-  {
-    title: "Programming iOS 11",
-    subtitle: "Dive Deep into Views, View Controllers, and Frameworks",
-    isbn13: "9781491999226",
-    price: "$59.17",
-    image: "https://itbook.store/img/books/9781491999226.png",
-    url: "https://itbook.store/books/9781491999226",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
+    title: "The Definitive Guide to MongoDB, 3rd Edition",
+    subtitle: "A complete guide to dealing with Big Data using MongoDB",
+    isbn13: "9781484211830",
+    price: "$47.11",
+    image: "https://itbook.store/img/books/9781484211830.png",
+    url: "https://itbook.store/books/9781484211830",
   },
   {
     title: "The Definitive Guide to MongoDB, 3rd Edition",
@@ -124,155 +47,50 @@ const booksList = [
     url: "https://itbook.store/books/9781484211830",
   },
   {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
     title: "The Definitive Guide to MongoDB, 3rd Edition",
     subtitle: "A complete guide to dealing with Big Data using MongoDB",
     isbn13: "9781484211830",
     price: "$47.11",
     image: "https://itbook.store/img/books/9781484211830.png",
     url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
   },
 ];
 
 export default function BookList() {
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
+
+  const renderFilter = () => {
+    return (
+      <div className="slider-container">
+        <p className="filter-para">Filter by price </p>
+        <div className="price-indicator-container">
+          <h3 htmlFor="minAmount">Min:</h3>
+          <p>{minPrice} $</p>
+          <h3 htmlFor="maxAmount">Max:</h3>
+          <p>{maxPrice} $</p>
+        </div>
+        <Slider
+          className="price-slider"
+          keyboard
+          range
+          draggableTrack
+          marks
+          pushable
+          defaultValue={[minPrice, maxPrice]}
+          onChange={(e) => {
+            setMinPrice(e[0]);
+            setMaxPrice(e[1] * 10);
+          }}
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
+      <div className="search-and-filter-container">{renderFilter()}</div>
       <ul className="books-item-container">
         {booksList.map((eachBookData) => (
           <BookCard bookData={eachBookData} key={eachBookData.isbn13} />

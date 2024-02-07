@@ -1,12 +1,40 @@
 :root {
-    --header-height: 70px;
-  }
-  
-  .books-item-container {
-    min-height: calc(100vh - var(--header-height));
-    max-width: 1280px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
+  --header-height: 70px;
+}
+
+.search-and-filter-container {
+  max-width: 1280px;
+  margin: auto;
+}
+
+.slider-container {
+  padding: 10px;
+  max-width: 260px;
+}
+
+.filter-para {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.price-slider {
+  margin-left: 5px;
+}
+
+.price-indicator-container {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 260px;
+  gap: 10px;
+}
+
+.books-item-container {
+  min-height: calc(100vh - var(--header-height));
+  max-width: 1280px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
