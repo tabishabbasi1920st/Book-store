@@ -1,0 +1,12 @@
+:root {
+    --header-height: 70px;
+  }
+  
+  .books-item-container {
+    min-height: calc(100vh - var(--header-height));
+    max-width: 1280px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
