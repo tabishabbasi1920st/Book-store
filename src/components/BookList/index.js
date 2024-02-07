@@ -81,7 +81,7 @@ export default function BookList() {
           pushable
           defaultValue={[minPrice, maxPrice]}
           onChange={(e) => {
-            setMinPrice(e[0]);
+            setMinPrice(e[0] * 10);
             setMaxPrice(e[1] * 10);
           }}
         />
