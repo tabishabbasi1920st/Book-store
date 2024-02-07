@@ -6,61 +6,43 @@ import Header from "../Header";
 import BookCard from "../BookCard";
 import { useState } from "react";
 
-const booksList = [
-  {
-    title: "MongoDB in Action, 2nd Edition",
-    subtitle: "Covers MongoDB version 3.0",
-    isbn13: "9781617291609",
-    price: "$32.10",
-    image: "https://itbook.store/img/books/9781617291609.png",
-    url: "https://itbook.store/books/9781617291609",
-  },
-  {
-    title: "Practical MongoDB",
-    subtitle: "Architecting, Developing, and Administering MongoDB",
-    isbn13: "9781484206485",
-    price: "$32.04",
-    image: "https://itbook.store/img/books/9781484206485.png",
-    url: "https://itbook.store/books/9781484206485",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-  {
-    title: "The Definitive Guide to MongoDB, 3rd Edition",
-    subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    isbn13: "9781484211830",
-    price: "$47.11",
-    image: "https://itbook.store/img/books/9781484211830.png",
-    url: "https://itbook.store/books/9781484211830",
-  },
-];
-
 export default function BookList() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [searchInputValue, setSearchInputValue] = useState("");
+  const [booksList, setBooksList] = useState([
+    {
+      title: "MongoDB in Action, 2nd Edition",
+      subtitle: "Covers MongoDB version 3.0",
+      isbn13: "9781617291609",
+      price: "$32.10",
+      image: "https://itbook.store/img/books/9781617291609.png",
+      url: "https://itbook.store/books/9781617291609",
+    },
+    {
+      title: "Practical MongoDB",
+      subtitle: "Architecting, Developing, and Administering MongoDB",
+      isbn13: "9781484206485",
+      price: "$32.04",
+      image: "https://itbook.store/img/books/9781484206485.png",
+      url: "https://itbook.store/books/9781484206485",
+    },
+    {
+      title: "The Definitive Guide to MongoDB, 3rd Edition",
+      subtitle: "A complete guide to dealing with Big Data using MongoDB",
+      isbn13: "9781484211830",
+      price: "$47.11",
+      image: "https://itbook.store/img/books/9781484211830.png",
+      url: "https://itbook.store/books/9781484211830",
+    },
+  ]);
+
+  const filteredBookList = booksList.filter(
+    (book) =>
+      parseFloat(book.price.slice(1)) >= minPrice &&
+      parseFloat(book.price.slice(1)) <= maxPrice &&
+      book.title.toLowerCase().includes(searchInputValue.toLowerCase())
+  );
 
   const renderFilter = () => {
     return (
@@ -98,6 +80,7 @@ export default function BookList() {
             placeholder="Search for books..."
             className="search-input"
             value={searchInputValue}
+            onChange={(e) => setSearchInputValue(e.target.value)}
           />
           <button className="search-btn">
             <FaSearch />
@@ -115,7 +98,7 @@ export default function BookList() {
         {renderFilter()}
       </div>
       <ul className="books-item-container">
-        {booksList.map((eachBookData) => (
+        {filteredBookList.map((eachBookData) => (
           <BookCard bookData={eachBookData} key={eachBookData.isbn13} />
         ))}
       </ul>
