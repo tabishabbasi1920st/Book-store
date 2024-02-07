@@ -1,6 +1,7 @@
 import "./index.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { FaSearch } from "react-icons/fa";
 import Header from "../Header";
 import BookCard from "../BookCard";
 import { useState } from "react";
@@ -59,10 +60,11 @@ const booksList = [
 export default function BookList() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
+  const [searchInputValue, setSearchInputValue] = useState("");
 
   const renderFilter = () => {
     return (
-      <div className="slider-container">
+      <div className="filter-container">
         <p className="filter-para">Filter by price </p>
         <div className="price-indicator-container">
           <h3 htmlFor="minAmount">Min:</h3>
@@ -87,10 +89,31 @@ export default function BookList() {
     );
   };
 
+  const renderSearchBar = () => {
+    return (
+      <div className="search-container">
+        <div className="search-bar">
+          <input
+            type="search"
+            placeholder="Search for books..."
+            className="search-input"
+            value={searchInputValue}
+          />
+          <button className="search-btn">
+            <FaSearch />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
-      <div className="search-and-filter-container">{renderFilter()}</div>
+      <div className="search-and-filter-container">
+        {renderSearchBar()}
+        {renderFilter()}
+      </div>
       <ul className="books-item-container">
         {booksList.map((eachBookData) => (
           <BookCard bookData={eachBookData} key={eachBookData.isbn13} />
