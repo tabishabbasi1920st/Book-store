@@ -37,7 +37,8 @@ export default function BookDetails() {
           <p className="desc-tag">Description:</p>
           <p className="book-desc">{desc}</p>
           <p className="book-price">Rs.{price}/-</p>
-          <div className="add-to-cart-btn-container">
+          <div className="back-and-cart-btns-container">
+            <button className="back-btn">Back</button>
             <button className="cart-btn">Add to cart</button>
           </div>
         </div>
