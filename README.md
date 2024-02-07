@@ -55,15 +55,15 @@ Home
 
 Book List
 
-| Components   | Details                                    | State                                | API(IT Bookstore) |
-| ------------ | ------------------------------------------ | ------------------------------------ | ----------------- |
-| BookList     |                                            | apiStatus, booksData,PriceRangevalue | /new              |
-| Header       | links for pages Home, Book List, Cart      | -                                    | -                 |
-| SearchInput  | Search (by title, author)                  | searchInputValue                     | /search/{query}   |
-| PriceRange   | filter (by price)                          | -                                    | -                 |
-| BookItem     | Book Items (title, subtitle, image, price) | -                                    | -                 |
-| Loader       | -                                          | -                                    | -                 |
-| ErrorMessage | -                                          | -                                    | -                 |
+| Components   | Details                                    | State                                    | API(IT Bookstore) |
+| ------------ | ------------------------------------------ | ---------------------------------------- | ----------------- |
+| BookList     |                                            | apiStatus, booksList, minPrice, maxPrice | /new              |
+| Header       | links for pages Home, Book List, Cart      | -                                        | -                 |
+| SearchInput  | Search (by title, author)                  | searchInputValue                         | /search/{query}   |
+| PriceRange   | filter (by price)                          | -                                        | -                 |
+| BookItem     | Book Items (title, subtitle, image, price) | -                                        | -                 |
+| Loader       | -                                          | -                                        | -                 |
+| ErrorMessage | -                                          | -                                        | -                 |
 
 Book Details
 
