@@ -4,6 +4,7 @@ import { CartContext } from "../Context/CartContext";
 import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../Loader";
+import { ToastContainer, toast } from "react-toastify";
 
 const apiConstants = {
   initial: "INITIAL",
@@ -106,6 +107,7 @@ export default function BookDetails() {
       quantity: 1,
     };
     addItemIntoCartList(item);
+    toast.info("Added Successfully", { theme: "dark", autoClose: 1000 });
   };
 
   const { title, subtitle, image, desc, price, isbn13 } = bookData;
@@ -116,6 +118,7 @@ export default function BookDetails() {
     <>
       <Header />
       {renderAppropView()}
+      <ToastContainer />
     </>
   );
 }
