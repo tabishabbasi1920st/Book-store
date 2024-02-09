@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "./index.css";
 import { FaShoppingBag, FaBook } from "react-icons/fa";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 
 const navItemsList = [
   {
@@ -18,6 +20,7 @@ const navItemsList = [
 ];
 
 export default function Header() {
+  const { cartList } = useContext(CartContext);
   return (
     <nav className="navbar">
       <div className="inner-container">
@@ -34,7 +37,12 @@ export default function Header() {
               <Link to={eachNavItem.path}>
                 <button className="nav-btns">
                   {eachNavItem.icon}
-                  <span className="nav-btn-txt">{eachNavItem.itemText}</span>
+                  {eachNavItem.id === "CART" && (
+                    <span className="total-item-in-cart">
+                      {cartList.length}
+                    </span>
+                  )}
+                  <sup className="nav-btn-txt">{eachNavItem.itemText}</sup>
                 </button>
               </Link>
             </li>
