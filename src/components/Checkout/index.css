@@ -1,0 +1,123 @@
+:root {
+    --header-height: 70px;
+  }
+  
+  .checkout-form {
+    min-height: calc(100vh - var(--header-height));
+    /* border: 2px solid red; */
+    max-width: 1280px;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-info-container {
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .contact-para {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  
+  .checkout-form-input {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .shipping-address-container {
+    /* border: 2px solid red; */
+    flex-grow: 1;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .shipping-para {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  
+  .first-and-last-name-container {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .city-state-pincode-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .phone-input-and-btns-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .checkout-btns-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .place-order-btn {
+    height: 50px;
+    width: 69%;
+    cursor: pointer;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  
+  .place-order-btn:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid rgb(187, 187, 203);
+  }
+  
+  .custom-link {
+    height: 50px;
+    width: 29%;
+  }
+  
+  .checkout-back-btn {
+    height: 100%;
+    width: 100%;
+    font-size: 17px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  @media screen and (min-width: 576px) {
+    .first-and-last-name-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .first-and-last-name-container input {
+      width: 49%;
+    }
+  
+    .city-state-pincode-container {
+      flex-direction: row;
+    }
+  }
+  

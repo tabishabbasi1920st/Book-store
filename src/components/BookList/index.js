@@ -10,7 +10,7 @@ export default function BookList() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [booksList, setBooksList] = useState([
+  const [booksList] = useState([
     {
       title: "MongoDB in Action, 2nd Edition",
       subtitle: "Covers MongoDB version 3.0",
