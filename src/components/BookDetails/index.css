@@ -101,6 +101,16 @@
   border: none;
 }
 
+.book-details-loading-view-container {
+  height: calc(100vh -var(--header-height)); /* Subtract navbar height */
+}
+
+.book-details-loading-view-para {
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
 @media screen and (min-width: 576px) {
   .book-details-container {
     display: flex;

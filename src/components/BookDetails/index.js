@@ -1,50 +1,65 @@
 import "./index.css";
 import Header from "../Header";
 import { CartContext } from "../Context/CartContext";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import Loader from "../Loader";
 
-const bookDetails = {
-  error: "0",
-  title: "Securing DevOps",
-  subtitle: "Security in the Cloud",
-  authors: "Julien Vehent",
-  publisher: "Manning",
-  isbn10: "1617294136",
-  isbn13: "9781617294136",
-  pages: "384",
-  year: "2018",
-  rating: "5",
-  desc: "An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. A DevOps team's highest priority is understanding those risks and hardening the system against them.Securing DevOps teaches you the essential techniques to secure your cloud ...",
-  price: "$26.98",
-  image: "https://itbook.store/img/books/9781617294136.png",
-  url: "https://itbook.store/books/9781617294136",
-  pdf: {
-    "Chapter 2": "https://itbook.store/files/9781617294136/chapter2.pdf",
-    "Chapter 5": "https://itbook.store/files/9781617294136/chapter5.pdf",
-  },
+const apiConstants = {
+  initial: "INITIAL",
+  success: "SUCCESS",
+  inProgress: "IN_PROGRESS",
+  failure: "FAILURE",
 };
 
 export default function BookDetails() {
-  const { title, subtitle, image, desc, price, isbn13 } = bookDetails;
+  const [bookData, setBookData] = useState({});
+  const [apiStatus, setApiStatus] = useState(apiConstants.initial);
+  const { id } = useParams();
 
-  const { addItemIntoCartList } = useContext(CartContext);
+  useEffect(() => {
+    fetchBookDeatails();
+  }, []);
 
-  const handleAddToCartButtonClick = () => {
-    const item = {
-      id: isbn13,
-      image,
-      title,
-      subtitle,
-      price,
-      quantity: 1,
-    };
-    addItemIntoCartList(item);
+  const fetchBookDeatails = async () => {
+    setApiStatus(apiConstants.inProgress);
+    try {
+      const apiUrl = `https://api.itbook.store/1.0/books/${id}`;
+      const response = await fetch(apiUrl);
+      if (response.ok) {
+        const singleBookData = await response.json();
+        setBookData(singleBookData);
+        setApiStatus(apiConstants.success);
+      } else {
+        setApiStatus(apiConstants.failure);
+      }
+    } catch (error) {
+      setApiStatus(apiConstants.failure);
+      console.error("Error while fetching single books details: ", error);
+    }
   };
 
-  return (
-    <>
-      <Header />
+  const renderLoadingView = () => {
+    <div className="book-details-loading-view-container">
+      <Loader />
+      <p className="book-details-loading-view-para">Loading...</p>
+    </div>;
+  };
+
+  const renderFetchingFailureView = () => {
+    return (
+      <div>
+        <p>
+          Oops...
+          <br />
+          Something went wrong
+        </p>
+      </div>
+    );
+  };
+
+  const renderSuccessView = () => {
+    return (
       <div className="book-details-container">
         <div className="book-img-container">
           <img src={image} alt={title} className="book-img" />
@@ -65,6 +80,40 @@ export default function BookDetails() {
           </div>
         </div>
       </div>
+    );
+  };
+
+  const renderAppropView = () => {
+    switch (apiStatus) {
+      case apiConstants.inProgress:
+        return renderLoadingView();
+      case apiConstants.success:
+        return renderSuccessView();
+      default:
+        return renderFetchingFailureView();
+    }
+  };
+
+  const handleAddToCartButtonClick = () => {
+    const item = {
+      id: isbn13,
+      image,
+      title,
+      subtitle,
+      price,
+      quantity: 1,
+    };
+    addItemIntoCartList(item);
+  };
+
+  const { title, subtitle, image, desc, price, isbn13 } = bookData;
+
+  const { addItemIntoCartList } = useContext(CartContext);
+
+  return (
+    <>
+      <Header />
+      {renderAppropView()}
     </>
   );
 }
