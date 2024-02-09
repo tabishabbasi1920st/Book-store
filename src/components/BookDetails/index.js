@@ -1,5 +1,7 @@
 import "./index.css";
 import Header from "../Header";
+import { CartContext } from "../Context/CartContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const bookDetails = {
@@ -24,7 +26,22 @@ const bookDetails = {
 };
 
 export default function BookDetails() {
-  const { title, subtitle, image, desc, price } = bookDetails;
+  const { title, subtitle, image, desc, price, isbn13 } = bookDetails;
+
+  const { addItemIntoCartList } = useContext(CartContext);
+
+  const handleAddToCartButtonClick = () => {
+    const item = {
+      id: isbn13,
+      image,
+      title,
+      subtitle,
+      price,
+      quantity: 1,
+    };
+    addItemIntoCartList(item);
+  };
+
   return (
     <>
       <Header />
@@ -42,7 +59,9 @@ export default function BookDetails() {
             <Link to="/books" className="custom-link-btn">
               <button className="back-btn">Back</button>
             </Link>
-            <button className="cart-btn">Add to cart</button>
+            <button className="cart-btn" onClick={handleAddToCartButtonClick}>
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
