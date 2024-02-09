@@ -1,6 +1,7 @@
 import "./index.css";
 import { useState, useContext } from "react";
 import { CartContext } from "../../components/Context/CartContext";
+import { Link } from "react-router-dom";
 
 export default function CartItem({ eachItem }) {
   const { id, image, title, subtitle, price, quantity } = eachItem;
@@ -25,7 +26,9 @@ export default function CartItem({ eachItem }) {
   return (
     <li className="cart-item">
       <div className="cart-item-img-container">
-        <img className="product-img" src={image} alt={title} />
+        <Link to={`/books/${id}`}>
+          <img className="product-img" src={image} alt={title} />
+        </Link>
       </div>
       <div className="product-details-container">
         <p className="product-title">{title}</p>
