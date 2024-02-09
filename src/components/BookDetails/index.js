@@ -1,5 +1,6 @@
 import "./index.css";
 import Header from "../Header";
+import { Link } from "react-router-dom";
 
 const bookDetails = {
   error: "0",
@@ -38,7 +39,9 @@ export default function BookDetails() {
           <p className="book-desc">{desc}</p>
           <p className="book-price">Rs.{price}/-</p>
           <div className="back-and-cart-btns-container">
-            <button className="back-btn">Back</button>
+            <Link to="/books" className="custom-link-btn">
+              <button className="back-btn">Back</button>
+            </Link>
             <button className="cart-btn">Add to cart</button>
           </div>
         </div>

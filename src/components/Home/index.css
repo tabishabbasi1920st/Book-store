@@ -9,6 +9,7 @@
   padding: 15px 10px 10px 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .banner-text {
@@ -33,6 +34,7 @@
 .explore-books-btn:hover {
   background-color: #302d2d;
 }
+
 
 @media screen and (max-width: 768px) {
   .banner-text,

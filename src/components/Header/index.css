@@ -61,6 +61,12 @@
   font-size: 20px;
 }
 
+.link {
+  all: unset;
+  align-self: center;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
   .nav-btn-txt {
     display: none;

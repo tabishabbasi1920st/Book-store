@@ -1,5 +1,6 @@
 import "./index.css";
 import Header from "../Header";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -21,7 +22,9 @@ export default function Home() {
           interiors that inspire and relax, allowing quiet spaces to help you
           discover great books.
         </p>
-        <button className="explore-books-btn">Explore Books</button>
+        <Link to="/books">
+          <button className="explore-books-btn">Explore Books</button>
+        </Link>
       </div>
     </>
   );

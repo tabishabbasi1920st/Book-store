@@ -78,9 +78,14 @@
   background-color: #1a1919;
 }
 
-.back-btn {
+.custom-link-btn {
   height: 50px;
   width: 45%;
+}
+
+.back-btn {
+  height: 100%;
+  width: 100%;
   background-color: transparent;
   color: #000000;
   font-size: 17px;

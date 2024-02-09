@@ -1,13 +1,14 @@
 import "./index.css";
+import { Link } from "react-router-dom";
 
 export default function BookCard({ bookData }) {
   const { title, subtitle, isbn13, price, image, url } = bookData;
 
   return (
     <li className="book-card">
-      <div className="img-container">
+      <Link className="img-container" to={`/books/${isbn13}`}>
         <img title="click to see book details" src={image} alt={title} />
-      </div>
+      </Link>
       <div className="content-container">
         <p className="title">{title}</p>
         <p className="subtitle">{subtitle}</p>
