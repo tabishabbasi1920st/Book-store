@@ -131,6 +131,7 @@ Reference: https://api.itbook.store
 - Icons (react-icons)
 - Range Slider (rc-slider)
 - React Router (react-router-dom v6.22.0)
+- Display Notification (react-toastify)
 
 ### Future Improvements
 
