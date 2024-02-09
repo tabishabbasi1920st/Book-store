@@ -4,13 +4,22 @@ import "rc-slider/assets/index.css";
 import { FaSearch } from "react-icons/fa";
 import Header from "../Header";
 import BookCard from "../BookCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Loader from "../Loader";
+
+const apiConstants = {
+  initial: "INITIAL",
+  success: "SUCCESS",
+  inProgress: "IN_PROGRESS",
+  failure: "FAILURE",
+};
 
 export default function BookList() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [booksList] = useState([
+  const [apiStatus, setApiStatus] = useState(apiConstants.initial);
+  const [booksList, setBooksList] = useState([
     {
       title: "MongoDB in Action, 2nd Edition",
       subtitle: "Covers MongoDB version 3.0",
@@ -37,12 +46,37 @@ export default function BookList() {
     },
   ]);
 
-  const filteredBookList = booksList.filter(
-    (book) =>
-      parseFloat(book.price.slice(1)) >= minPrice &&
-      parseFloat(book.price.slice(1)) <= maxPrice &&
-      book.title.toLowerCase().includes(searchInputValue.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchBooksData = async () => {
+      setApiStatus(apiConstants.inProgress);
+      try {
+        const apiUrl = "https://api.itbook.store/1.0/new";
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+          const booksData = await response.json();
+          const { books } = booksData;
+          setBooksList(books);
+          console.log(booksData);
+          setApiStatus(apiConstants.success);
+        }
+      } catch (error) {
+        setApiStatus(apiConstants.failure);
+        console.error("Error while fetching books data: ", error);
+      }
+    };
+
+    fetchBooksData();
+  }, []);
+
+  const getFilteredBooksList = () => {
+    const filteredBookList = booksList.filter(
+      (book) =>
+        parseFloat(book.price.slice(1)) >= minPrice &&
+        parseFloat(book.price.slice(1)) <= maxPrice &&
+        book.title.toLowerCase().includes(searchInputValue.toLowerCase())
+    );
+    return filteredBookList;
+  };
 
   const renderFilter = () => {
     return (
@@ -90,6 +124,48 @@ export default function BookList() {
     );
   };
 
+  const renderBookItemsContainer = () => {
+    return (
+      <ul className="books-item-container">
+        {getFilteredBooksList().map((eachBookData) => (
+          <BookCard bookData={eachBookData} key={eachBookData.isbn13} />
+        ))}
+      </ul>
+    );
+  };
+
+  const renderLoadingView = () => {
+    return (
+      <div className="book-list-loading-view">
+        <Loader />
+        <p className="loading-para">Loading...</p>
+      </div>
+    );
+  };
+
+  const renderFailureView = () => {
+    return (
+      <div className="book-list-failure-view-container">
+        <p className="something-wrong-para">
+          Oops..
+          <br />
+          Something went wrong
+        </p>
+      </div>
+    );
+  };
+
+  const renderAppropriateView = () => {
+    switch (apiStatus) {
+      case apiConstants.inProgress:
+        return renderLoadingView();
+      case apiConstants.success:
+        return renderBookItemsContainer();
+      default:
+        return renderFailureView();
+    }
+  };
+
   return (
     <>
       <Header />
@@ -97,11 +173,7 @@ export default function BookList() {
         {renderSearchBar()}
         {renderFilter()}
       </div>
-      <ul className="books-item-container">
-        {filteredBookList.map((eachBookData) => (
-          <BookCard bookData={eachBookData} key={eachBookData.isbn13} />
-        ))}
-      </ul>
+      {renderAppropriateView()}
     </>
   );
 }

@@ -1,10 +1,18 @@
 :root {
   --header-height: 70px;
+  --search-and-filter-container-height-in-sm: ;
 }
 
 .search-and-filter-container {
   max-width: 1280px;
   margin: auto;
+  height: 180px;
+}
+
+@media screen and (min-width: 768px) {
+  .search-and-filter-container {
+    height: 110px;
+  }
 }
 
 .filter-container {
@@ -72,6 +80,32 @@
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+}
+
+.book-list-loading-view {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-para {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.book-list-failure-view-container {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.something-wrong-para {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
 }
 
 /* Responsiveness*/
