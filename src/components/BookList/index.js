@@ -1,7 +1,7 @@
 import "./index.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { FaSearch } from "react-icons/fa";
+import { FaChartLine, FaSearch } from "react-icons/fa";
 import Header from "../Header";
 import BookCard from "../BookCard";
 import { useState, useEffect } from "react";
@@ -47,33 +47,62 @@ export default function BookList() {
   ]);
 
   useEffect(() => {
-    const fetchBooksData = async () => {
-      setApiStatus(apiConstants.inProgress);
-      try {
-        const apiUrl = "https://api.itbook.store/1.0/new";
-        const response = await fetch(apiUrl);
-        if (response.ok) {
-          const booksData = await response.json();
-          const { books } = booksData;
-          setBooksList(books);
-          console.log(booksData);
-          setApiStatus(apiConstants.success);
-        }
-      } catch (error) {
-        setApiStatus(apiConstants.failure);
-        console.error("Error while fetching books data: ", error);
-      }
-    };
-
     fetchBooksData();
   }, []);
+
+  const fetchBooksData = async () => {
+    setApiStatus(apiConstants.inProgress);
+    try {
+      const apiUrl = "https://api.itbook.store/1.0/new";
+      const response = await fetch(apiUrl);
+      if (response.ok) {
+        const booksData = await response.json();
+        const { books } = booksData;
+        setBooksList(books);
+        setApiStatus(apiConstants.success);
+      } else {
+        setApiStatus(apiConstants.failure);
+      }
+    } catch (error) {
+      setApiStatus(apiConstants.failure);
+      console.error("Error while fetching books data: ", error);
+    }
+  };
+
+  const fetchSearchedBookData = async (searchedValue) => {
+    setApiStatus(apiConstants.inProgress);
+    try {
+      const apiUrl = `https://api.itbook.store/1.0/search/${searchedValue}`;
+      const response = await fetch(apiUrl);
+      if (response.ok) {
+        const searchedBookData = await response.json();
+        const { books } = searchedBookData;
+        setBooksList(books);
+        setApiStatus(apiConstants.success);
+      } else {
+        setApiStatus(apiConstants.failure);
+      }
+    } catch (error) {
+      setApiStatus(apiConstants.failure);
+      console.error("Error while fetching searched book data: ", error);
+    }
+  };
+
+  const handleChangeInSearchInput = (e) => {
+    const { value } = e.target;
+    setSearchInputValue(value);
+    if (value.trim() === "") {
+      fetchBooksData();
+    } else {
+      fetchSearchedBookData(value);
+    }
+  };
 
   const getFilteredBooksList = () => {
     const filteredBookList = booksList.filter(
       (book) =>
         parseFloat(book.price.slice(1)) >= minPrice &&
-        parseFloat(book.price.slice(1)) <= maxPrice &&
-        book.title.toLowerCase().includes(searchInputValue.toLowerCase())
+        parseFloat(book.price.slice(1)) <= maxPrice
     );
     return filteredBookList;
   };
@@ -114,11 +143,9 @@ export default function BookList() {
             placeholder="Search for books..."
             className="search-input"
             value={searchInputValue}
-            onChange={(e) => setSearchInputValue(e.target.value)}
+            onChange={handleChangeInSearchInput}
           />
-          <button className="search-btn">
-            <FaSearch />
-          </button>
+          <FaSearch className="search-icon" />
         </div>
       </div>
     );
@@ -130,6 +157,9 @@ export default function BookList() {
         {getFilteredBooksList().map((eachBookData) => (
           <BookCard bookData={eachBookData} key={eachBookData.isbn13} />
         ))}
+        {booksList.length === 0 &&
+          apiStatus === apiConstants.success &&
+          renderEmptySearchView()}
       </ul>
     );
   };
@@ -139,6 +169,16 @@ export default function BookList() {
       <div className="book-list-loading-view">
         <Loader />
         <p className="loading-para">Loading...</p>
+      </div>
+    );
+  };
+
+  const renderEmptySearchView = () => {
+    return (
+      <div className="empty-search-view-container">
+        <p className="something-wrong-para">
+          No results found! Try a different search term or category.
+        </p>
       </div>
     );
   };
