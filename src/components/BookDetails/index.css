@@ -102,7 +102,12 @@
 }
 
 .book-details-loading-view-container {
-  height: calc(100vh -var(--header-height)); /* Subtract navbar height */
+  height: calc(100vh - var(--header-height)); /* Subtract navbar height */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .book-details-loading-view-para {

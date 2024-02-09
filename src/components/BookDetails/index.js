@@ -40,16 +40,18 @@ export default function BookDetails() {
   };
 
   const renderLoadingView = () => {
-    <div className="book-details-loading-view-container">
-      <Loader />
-      <p className="book-details-loading-view-para">Loading...</p>
-    </div>;
+    return (
+      <div className="book-details-loading-view-container">
+        <Loader />
+        <p className="book-details-loading-view-para">Loading...</p>
+      </div>
+    );
   };
 
   const renderFetchingFailureView = () => {
     return (
-      <div>
-        <p>
+      <div className="book-details-loading-view-container">
+        <p className="book-details-loading-view-para">
           Oops...
           <br />
           Something went wrong
