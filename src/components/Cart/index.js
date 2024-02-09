@@ -54,7 +54,7 @@ export default function Cart() {
   const renderEmptyCartView = () => {
     return (
       <div className="empty-cart-view-container">
-        <h1>Your Cart Is Empty</h1>
+        <h1 >Your Cart Is Empty</h1>
       </div>
     );
   };
