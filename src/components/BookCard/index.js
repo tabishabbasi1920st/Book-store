@@ -2,6 +2,7 @@ import "./index.css";
 import { CartContext } from "../Context/CartContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function BookCard({ bookData }) {
   const { title, subtitle, isbn13, price, image, url } = bookData;
@@ -18,6 +19,7 @@ export default function BookCard({ bookData }) {
       quantity: 1,
     };
     addItemIntoCartList(item);
+    toast.info(`Added Successfully`, { theme: "dark", autoClose: 1000 });
   };
 
   return (

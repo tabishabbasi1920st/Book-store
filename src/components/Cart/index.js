@@ -1,12 +1,19 @@
 import "./index.css";
 import Header from "../Header";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
 import CartItem from "../CartItem";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
+  const [textAreaInput, setTextAreaInput] = useState("");
+
   const { cartList } = useContext(CartContext);
+
+  const onChangeTextArea = (e) => {
+    const { value } = e.target;
+    setTextAreaInput(value);
+  };
 
   const getTotalPriceOfCartItems = () => {
     let totalPrice = 0;
@@ -39,8 +46,10 @@ export default function Cart() {
           Special Delievery Instructions
         </p>
         <textarea
+          onChange={onChangeTextArea}
           placeholder="Please update special delievery instructions.."
           className="text-area"
+          value={textAreaInput}
         />
         <Link to="/checkout">
           <button title="click to checkout" className="checkout-btn">
@@ -54,7 +63,7 @@ export default function Cart() {
   const renderEmptyCartView = () => {
     return (
       <div className="empty-cart-view-container">
-        <h1 >Your Cart Is Empty</h1>
+        <h1>Your Cart Is Empty</h1>
       </div>
     );
   };

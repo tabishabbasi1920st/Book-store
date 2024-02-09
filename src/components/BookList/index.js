@@ -1,11 +1,12 @@
 import "./index.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { FaChartLine, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import Header from "../Header";
 import BookCard from "../BookCard";
 import { useState, useEffect } from "react";
 import Loader from "../Loader";
+import { ToastContainer, toast } from "react-toastify";
 
 const apiConstants = {
   initial: "INITIAL",
@@ -226,6 +227,7 @@ export default function BookList() {
         {renderFilter()}
       </div>
       {renderAppropriateView()}
+      <ToastContainer />
     </>
   );
 }
