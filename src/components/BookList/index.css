@@ -110,6 +110,7 @@
 
 .empty-search-view-container {
   height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
   width: 100%;
   display: flex;
   justify-content: center;

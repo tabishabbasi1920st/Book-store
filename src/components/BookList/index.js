@@ -160,6 +160,8 @@ export default function BookList() {
         {booksList.length === 0 &&
           apiStatus === apiConstants.success &&
           renderEmptySearchView()}
+        {getFilteredBooksList().length === 0 &&
+          renderNoBooksInThisPriceRangeView()}
       </ul>
     );
   };
@@ -190,6 +192,16 @@ export default function BookList() {
           Oops..
           <br />
           Something went wrong
+        </p>
+      </div>
+    );
+  };
+
+  const renderNoBooksInThisPriceRangeView = () => {
+    return (
+      <div className="empty-search-view-container">
+        <p className="something-wrong-para">
+          No books in this price range... <br />
         </p>
       </div>
     );
