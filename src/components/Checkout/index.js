@@ -69,25 +69,25 @@ export default function Checkout() {
     };
 
     if (!validateEmail(email)) {
-      toast.warn("Please enter valid email");
+      toast.error("Please enter valid email");
       return false;
     } else if (!validateFirstName(firstName)) {
-      toast.warn("Please enter valid first name");
+      toast.error("Please enter valid first name");
       return false;
     } else if (!validateAddress(address)) {
-      toast.warn("Please enter valid address");
+      toast.error("Please enter valid address");
       return false;
     } else if (!validateCity(city)) {
-      toast.warn("Please enter valid city");
+      toast.error("Please enter valid city");
       return false;
     } else if (!validateState(state)) {
-      toast.warn("Please enter valid state");
+      toast.error("Please enter valid state");
       return false;
     } else if (!validatePinCode(pinCode)) {
-      toast.warn("Please enter valid PIN code");
+      toast.error("Please enter valid PIN code");
       return false;
     } else if (!validatePhoneNumber(phone)) {
-      toast.warn("Please enter valid phone number");
+      toast.error("Please enter valid phone number");
       return false;
     }
 
