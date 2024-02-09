@@ -4,14 +4,14 @@ export const CartContext = React.createContext();
 
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([
-    // {
-    //   id: "9781484211830",
-    //   image: "https://itbook.store/img/books/9781484211830.png",
-    //   price: "$47.11",
-    //   quantity: 1,
-    //   subtitle: "A complete guide to dealing with Big Data using MongoDB",
-    //   title: "The Definitive Guide to MongoDB, 3rd Edition",
-    // },
+    {
+      id: "9781484211830",
+      image: "https://itbook.store/img/books/9781484211830.png",
+      price: "$47.11",
+      quantity: 1,
+      subtitle: "A complete guide to dealing with Big Data using MongoDB",
+      title: "The Definitive Guide to MongoDB, 3rd Edition",
+    },
   ]);
 
   const updateExistingItemQuantity = (existedItemId, newQuantity) => {
