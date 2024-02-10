@@ -2,7 +2,7 @@
 
 An application that allows users to browse and search for books, view book details, add books to a shopping cart, and place an order.
 
-> Demo
+> Demo: https://tabishbookstore.netlify.app
 
 ### Usage
 
